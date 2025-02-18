@@ -35,6 +35,12 @@ const Auth = () => {
     };
   }, []);
 
+  const loginWithGithub = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "github",
+    });
+  };
+
   const signUpNewUser = async (userEmail, userPassword) => {
     const { data, error } = await supabase.auth.signUp({
       email: userEmail,
@@ -162,7 +168,7 @@ const Auth = () => {
 
               <button
                 className="flex flex-row item-center justify-center bg-black text-white p-4 border-1 cursor-pointer rounded-lg"
-                onClick={login}
+                onClick={loginWithGithub}
               >
                 <Github className="size-6 mr-3" /> Login With GitHub
               </button>
